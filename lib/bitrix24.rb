@@ -27,7 +27,7 @@ module Bitrix24
   end
 
   def self.add(params)
-    fields = parse_fields(params)
+    fields = parse_fields_to_string(params)
     uri = URI("#{@api_url}#{ENDPOINT_ADD}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
@@ -35,7 +35,7 @@ module Bitrix24
   end
 
   def self.delete(params)
-    fields = parse_fields(params)
+    fields = parse_fields_to_string(params)
     uri = URI("#{@api_url}#{ENDPOINT_DELETE}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
@@ -59,7 +59,7 @@ module Bitrix24
   end
 
   def self.update(params)
-    fields = parse_fields(params)
+    fields = parse_fields_to_string(params)
     uri = URI("#{@api_url}#{ENDPOINT_UPDATE}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
@@ -81,11 +81,11 @@ module Bitrix24
     result['result'] if result.code == 200
   end
 
-  def self.parse_fields(fields)
+  def self.parse_fields_to_string(fields)
     query = ""
     fields.each do |key, value|
       if key == "EMAIL" || key == "PHONE"
-        query += "FIELDS[#{key}][0][VALUE]=#{value}"
+        query += "FIELDS[#{key}][0][VALUE]=#{value}&"
       else
         query += "FIELDS[#{key}]=#{value}&"
       end
@@ -94,13 +94,22 @@ module Bitrix24
     query.slice 0..-2
   end
 
-  def self.fields_custom_merge(fields_leads, fields_custom)
+  def self.merge_fields_and_custom_fields(fields_leads, fields_custom)
     fields = {}
     fields.merge!(fields_leads) if fields_leads.class == Hash
     if fields_custom.class == Array
-      fields_custom.each { |field| fields.merge!({ field[:name] => field[:value] }) if field[:name].present? && field[:value].present? }
+      fields.merge!(parse_array_to_object(fields_custom))
     elsif fields_custom.class == Hash
       fields.merge!({ fields_custom[:name] => fields_custom[:value] })
+    end
+    fields
+  end
+
+  def self.parse_array_to_object(fields_custom=[])
+    fields = {}
+    fields_custom.each do |field|
+      next if field.nil? || field["name"].nil? || field["value"].nil?
+      fields.merge!({ field["name"] => field["value"] })
     end
     fields
   end
