@@ -6,8 +6,6 @@ require 'uri'
 require 'httparty'
 
 module Bitrix24
-  class Error < StandardError; end
-
   # Default fields endpoint
   ENDPOINT_ADD = "crm.lead.add".freeze
   ENDPOINT_DELETE = "crm.lead.delete".freeze
@@ -31,7 +29,9 @@ module Bitrix24
     uri = URI("#{@api_url}#{ENDPOINT_ADD}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
+    result.code == 200
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.delete(params)
@@ -39,7 +39,9 @@ module Bitrix24
     uri = URI("#{@api_url}#{ENDPOINT_DELETE}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
+    result.code == 200
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.get(id)
@@ -48,7 +50,7 @@ module Bitrix24
     uri.query = fields
     result = HTTParty.get(uri.to_s)
     result['result'] if result.code == 200
-  rescue Error => e
+  rescue StandardError => e
     puts e.message
   end
 
@@ -63,13 +65,17 @@ module Bitrix24
     uri = URI("#{@api_url}#{ENDPOINT_UPDATE}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
+    result.code == 200
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.list_fields
     uri = URI("#{@api_url}#{ENDPOINT_FIELDS}.json")
     result = HTTParty.get(uri.to_s)
     result['result'] if result.code == 200
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.add_fiels_custom(id)
@@ -78,7 +84,9 @@ module Bitrix24
     uri = URI("#{@api_url}#{ENDPOINT_ADD_CUSTOM}.json")
     uri.query = fields
     result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
+    result.code == 200
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.parse_fields_to_string(fields)
@@ -93,6 +101,8 @@ module Bitrix24
     end
     query.gsub("FIELDS[ID]", "ID") if query.include?("FIELDS[ID]")
     query.slice 0..-2
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.merge_fields_and_custom_fields(fields_leads, fields_custom)
@@ -101,6 +111,8 @@ module Bitrix24
     fields.merge!(parse_array_to_object(fields_custom)) if fields_custom.class == Array
     fields.merge!({ fields_custom[:name] => fields_custom[:value] }) if fields_custom.class == Hash
     fields
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.parse_array_to_object(fields_custom=[])
@@ -111,12 +123,13 @@ module Bitrix24
       fields.merge!({ field[:name] => field[:value] })
     end
     fields
+  rescue StandardError => e
+    puts e.message
   end
 
   def self.parse_string_to_date(value)
     Date.parse(value)
   rescue StandardError => e
     puts e.message
-    nil
   end
 end
