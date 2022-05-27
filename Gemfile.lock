@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bitrix24 (0.1.9)
+    bitrix24 (0.1.10)
 
 GEM
   remote: https://rubygems.org/

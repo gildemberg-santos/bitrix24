@@ -18,75 +18,42 @@ module Bitrix24
   ENDPOINT_ADD_CUSTOM = "crm.lead.userfield.add".freeze
   ENDPOINT_GET_CUSTOM = "crm.lead.userfield.get".freeze
 
-  attr_accessor :api_url
+  attr_accessor :url
 
   def self.api_url(url)
-    @api_url = url
+    @url ||= url
+  end
+
+  def self.request_execute(endpoint, params=nil, id=nil)
+    fields = ""
+    fields = parse_fields_to_string(params) if params.is_a?(Hash)
+    fields += "ID=#{id}" if id.is_a?(Integer)
+    fields ||= id if id.is_a?(Integer)
+    uri = URI("#{@url}#{endpoint}.json")
+    uri.query = fields
+    result = HTTParty.get(uri.to_s)
+    result.code == 200
+  rescue StandardError => e
+    raise e
+  end
+
+  def self.request_select(endpoint, id=nil)
+    fields = nil
+    fields = "ID=#{id}" if id.is_a?(Integer)
+    uri = URI("#{@url}#{endpoint}.json")
+    uri.query = fields if fields.is_a?(String)
+    result = HTTParty.get(uri.to_s)
+    result['result'] if result.code == 200
+  rescue StandardError => e
+    raise e
   end
 
   def self.add(params)
-    fields = parse_fields_to_string(params)
-    uri = URI("#{@api_url}#{ENDPOINT_ADD}.json")
-    uri.query = fields
-    result = HTTParty.get(uri.to_s)
-    result.code == 200
-  rescue StandardError => e
-    puts e.message
-  end
-
-  def self.delete(params)
-    fields = parse_fields_to_string(params)
-    uri = URI("#{@api_url}#{ENDPOINT_DELETE}.json")
-    uri.query = fields
-    result = HTTParty.get(uri.to_s)
-    result.code == 200
-  rescue StandardError => e
-    puts e.message
+    request_execute(ENDPOINT_ADD, params)
   end
 
   def self.get(id)
-    fields = "ID=#{id}"
-    uri = URI("#{@api_url}#{ENDPOINT_GET}.json")
-    uri.query = fields
-    result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
-  rescue StandardError => e
-    puts e.message
-  end
-
-  def self.list
-    uri = URI("#{@api_url}#{ENDPOINT_LIST}.json")
-    result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
-  end
-
-  def self.update(params)
-    fields = parse_fields_to_string(params)
-    uri = URI("#{@api_url}#{ENDPOINT_UPDATE}.json")
-    uri.query = fields
-    result = HTTParty.get(uri.to_s)
-    result.code == 200
-  rescue StandardError => e
-    puts e.message
-  end
-
-  def self.list_fields
-    uri = URI("#{@api_url}#{ENDPOINT_FIELDS}.json")
-    result = HTTParty.get(uri.to_s)
-    result['result'] if result.code == 200
-  rescue StandardError => e
-    puts e.message
-  end
-
-  def self.add_fiels_custom(id)
-    id = id.gsub("UF_CRM_", "")
-    fields = "FIELDS[FIELD_NAME]=#{id}"
-    uri = URI("#{@api_url}#{ENDPOINT_ADD_CUSTOM}.json")
-    uri.query = fields
-    result = HTTParty.get(uri.to_s)
-    result.code == 200
-  rescue StandardError => e
-    puts e.message
+    request_select(ENDPOINT_GET, id)
   end
 
   def self.parse_fields_to_string(fields)
