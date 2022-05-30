@@ -25,6 +25,7 @@ module Bitrix24
   end
 
   def self.request_execute(endpoint, params=nil, id=nil)
+    return false if params.nil? && id.nil?
     fields = ""
     fields = parse_fields_to_string(params) if params.is_a?(Hash)
     fields += "ID=#{id}" if id.is_a?(Integer)
@@ -74,10 +75,12 @@ module Bitrix24
 
   def self.merge_fields_and_custom_fields(fields_leads, fields_custom)
     fields = {}
+    fields_leads = normalize_hash(fields_leads)
+    fields_custom = normalize_hash(fields_custom)
     fields.merge!(fields_leads) if fields_leads.class == Hash
     fields.merge!(parse_array_to_object(fields_custom)) if fields_custom.class == Array
     fields.merge!({ fields_custom[:name] => fields_custom[:value] }) if fields_custom.class == Hash
-    fields
+    normalize_hash(fields)
   rescue StandardError => e
     puts e.message
   end
@@ -85,7 +88,7 @@ module Bitrix24
   def self.parse_array_to_object(fields_custom=[])
     fields = {}
     fields_custom.each do |field|
-      field = eval(field.to_json) unless field.nil?
+      field = normalize_hash(field)
       next if field.nil? || field[:name].nil? || field[:value].nil?
       fields.merge!({ field[:name] => field[:value] })
     end
@@ -98,5 +101,9 @@ module Bitrix24
     Date.parse(value)
   rescue StandardError => e
     puts e.message
+  end
+
+  def self.normalize_hash(value)
+    eval(value.to_json) unless value.nil?
   end
 end
