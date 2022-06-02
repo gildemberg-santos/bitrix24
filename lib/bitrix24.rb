@@ -60,8 +60,9 @@ module Bitrix24
   def self.parse_fields_to_string(fields)
     query = ""
     fields.each do |key, value|
-      value = parse_string_to_date(value) if key == "BIRTHDATE"
-      if key == "EMAIL" || key == "PHONE"
+      value = parse_string_to_date(value) if key == :BIRTHDATE
+      puts key.class
+      if key == :EMAIL || key == :PHONE
         query += "FIELDS[#{key}][0][VALUE]=#{value}&"
       else
         query += "FIELDS[#{key}]=#{value}&"
