@@ -6,14 +6,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    httparty (0.13.7)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
-    json (1.8.6)
-    minitest (5.15.0)
-    minitest-matchers (1.4.1)
-      minitest (~> 5.0)
-    multi_xml (0.6.0)
+    json (2.6.2)
     rake (13.0.6)
 
 PLATFORMS
@@ -21,10 +14,7 @@ PLATFORMS
 
 DEPENDENCIES
   bitrix24!
-  httparty (~> 0.13.7)
-  json (>= 1.8)
-  minitest (~> 5.8, >= 5.8.4)
-  minitest-matchers
+  json (~> 2.6, >= 2.6.2)
   rake (~> 13.0)
 
 BUNDLED WITH
