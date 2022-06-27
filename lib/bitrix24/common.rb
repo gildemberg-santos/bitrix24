@@ -55,7 +55,7 @@ module Bitrix24
       query = ''
       fields.each do |key, value|
         value = parse_string_to_date(value) if key == :BIRTHDATE
-        query += if %i[EMAIL PHONE].include?(key)
+        query += if %w[EMAIL PHONE].include?(key)
                    "FIELDS[#{key}][0][VALUE]=#{value}&"
                  else
                    "FIELDS[#{key}]=#{value}&"
