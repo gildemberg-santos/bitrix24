@@ -28,47 +28,38 @@ DATA_BASE = '1970-05-01'
 
 describe Bitrix24::Common do
   before(:all) do
-    Bitrix24::Common.url = URL_BASE_ERRO
+    @bitrix24 = Bitrix24::Common.new
+    @bitrix24.url = URL_BASE_ERRO
   end
   it {
     expect do
-      Bitrix24::Common.add(URL_BASE_ERRO)
+      @bitrix24.add(URL_BASE_ERRO)
     end.to raise_error(an_instance_of(Bitrix24::Error))
   }
 end
 
 describe Bitrix24::Common do
   before(:all) do
-    Bitrix24::Common.url = URL_BASE
+    @bitrix24 = Bitrix24::Common.new
+    @bitrix24.url = URL_BASE
   end
 
-  it { expect(Bitrix24::Common.add(LEAD_BASE)['result'].present?).to eq(true) }
+  it { expect(@bitrix24.add(LEAD_BASE)['result'].present?).to eq(true) }
 
-  it { expect { Bitrix24::Common.add(nil)['result'] }.to raise_error(an_instance_of(Bitrix24::Error)) }
+  it { expect { @bitrix24.add(nil)['result'] }.to raise_error(an_instance_of(Bitrix24::Error)) }
 
   it {
     expect(
-      Bitrix24::Common.add(
-        Bitrix24::Common.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)
+      @bitrix24.add(
+        @bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)
       )['result'].present?
     ).to eq(true)
   }
 
-  it { expect(Bitrix24::Common.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)).to eq(MERGE_CUSTOM_BASE) }
+  it { expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)).to eq(MERGE_CUSTOM_BASE) }
 
-  it { expect(Bitrix24::Common.merge_fields_and_custom_fields(nil, FIELD_CUSTOM_BASE)).to eq(LEAD_CUSTOM_BASE) }
+  it { expect(@bitrix24.merge_fields_and_custom_fields(nil, FIELD_CUSTOM_BASE)).to eq(LEAD_CUSTOM_BASE) }
 
-  it { expect(Bitrix24::Common.merge_fields_and_custom_fields(LEAD_BASE, nil)).to eq(LEAD_BASE) }
+  it { expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, nil)).to eq(LEAD_BASE) }
 
-  it { expect(Bitrix24::Common.parse_string_to_date(nil).class).to eq(NilClass) }
-
-  it { expect(Bitrix24::Common.parse_string_to_date('').class).to eq(NilClass) }
-
-  it { expect(Bitrix24::Common.parse_string_to_date('sdgfsgf3213fd').class).to eq(NilClass) }
-
-  it { expect(Bitrix24::Common.parse_string_to_date('01.05.1970').to_s).to eq(DATA_BASE) }
-
-  it { expect(Bitrix24::Common.parse_string_to_date('01/05/1970').to_s).to eq(DATA_BASE) }
-
-  it { expect(Bitrix24::Common.parse_string_to_date('1970-05-01').to_s).to eq(DATA_BASE) }
 end
