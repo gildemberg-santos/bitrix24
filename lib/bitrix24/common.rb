@@ -5,7 +5,7 @@ module Bitrix24
     attr_accessor :url
 
     def add(params)
-      raise Bitrix24::Error, 'Lead fields is required' if params.nil?
+      raise Bitrix24::Error, 'Lead fields is required' if blank? params
 
       request_execute(ENDPOINT_ADD, params)
     rescue Bitrix24::Error => e
@@ -13,6 +13,8 @@ module Bitrix24
     end
 
     def get(id)
+      raise Bitrix24::Error, 'Id is required' if blank? id
+
       request_select(ENDPOINT_GET, id)
     rescue Bitrix24::Error => e
       raise e
