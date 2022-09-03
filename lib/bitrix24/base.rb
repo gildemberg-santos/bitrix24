@@ -21,4 +21,18 @@ module Bitrix24
   rescue URI::InvalidURIError
     false
   end
+
+  def self.create_uri(url_base, endpoint, query)
+    uri = URI("#{url_base}#{endpoint}.json")
+    uri.query = query if query.is_a?(String)
+    uri
+  end
+
+  def self.string_id(id)
+    if id.is_a?(Integer)
+      "ID=#{id}"
+    else
+      ""
+    end
+  end
 end
