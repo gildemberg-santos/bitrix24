@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Bitrix24
-  class Request < Bitrix24::Base
+  class Request
     attr_reader :json, :status_code
     attr_writer :access_token
 
     def initialize(url)
-      raise Bitrix24::Error, "URL is required" if blank?(url)
+      raise Bitrix24::Error, "URL is required" if url.blank?
 
       @url = url
     end
