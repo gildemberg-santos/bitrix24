@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
 module Bitrix24
-  class Common < Bitrix24::Base
+  class Common
     attr_accessor :url
 
     def add(params)
-      raise Bitrix24::Error, "Lead fields is required" if blank?(params)
+      Bitrix24.validate_lead(params)
+      Bitrix24.validate_url(@url)
 
       request_execute(ENDPOINT_ADD, params)
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def get(id)
-      raise Bitrix24::Error, "Id is required" if blank?(id)
+      Bitrix24.validate_lead_id(id)
+      Bitrix24.validate_url(@url)
 
       request_select(ENDPOINT_GET, id)
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def merge_fields_and_custom_fields(fields_leads, fields_custom)
@@ -46,35 +44,25 @@ module Bitrix24
       end
       query.gsub("FIELDS[ID]", "ID") if query.include?("FIELDS[ID]")
       query.slice(0..-2)
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def request_execute(endpoint, params, id = nil)
       params = JSON.parse(params.to_json)
       fields = ""
       fields = parse_fields_to_string(params) if params.is_a?(Hash)
-      fields += "ID=#{id}" if id.is_a?(Integer)
+      fields += Bitrix24.string_id(id)
       fields ||= id if id.is_a?(Integer)
-      uri = URI("#{@url}#{endpoint}.json")
-      uri.query = fields
-      result = Bitrix24::Request.new(uri.to_s)
+      result = Bitrix24::Request.new(Bitrix24.create_uri(@url, endpoint, fields))
       result.get
       result.json
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def request_select(endpoint, id = nil)
-      fields = nil
-      fields = "ID=#{id}" if id.is_a?(Integer)
-      uri = URI("#{@url}#{endpoint}.json")
-      uri.query = fields if fields.is_a?(String)
-      result = Bitrix24::Request.new(uri.to_s)
+      fields = ""
+      fields += Bitrix24.string_id(id)
+      result = Bitrix24::Request.new(Bitrix24.create_uri(@url, endpoint, fields))
       result.get
       result.json
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def parse_array_to_object(fields_custom = [])
@@ -86,8 +74,6 @@ module Bitrix24
         fields.merge!({ field[:name] => field[:value] })
       end
       fields
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def parse_string_to_date(value)
@@ -97,9 +83,7 @@ module Bitrix24
     end
 
     def normalize_hash(value)
-      eval(value.to_json) unless value.nil?
-    rescue Bitrix24::Error => e
-      raise e
+      value&.deep_symbolize_keys
     end
   end
 end
