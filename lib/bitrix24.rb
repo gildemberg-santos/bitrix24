@@ -6,6 +6,7 @@ require "json"
 require "net/http"
 require "active_support/time"
 require "logger"
+require "openssl"
 
 module Bitrix24; end
 

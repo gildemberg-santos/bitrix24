@@ -21,7 +21,7 @@ FIELD_CUSTOM_BASE = { name: "TEST_TDD", value: "Teste" }.freeze
 LEAD_CUSTOM_BASE = { TEST_TDD: "Teste" }.freeze
 MERGE_CUSTOM_BASE = { TITLE: "TDD", NAME: "Test Lead", PHONE: "123456789", EMAIL: "teste@teste.com",
                       TEST_TDD: "Teste", }.freeze
-URL_BASE = "https://b24-8d71jf.bitrix24.com.br/rest/1/fbyoqtsl8xlg2m6d/"
+URL_BASE = "https://b24-7wstcz.bitrix24.com.br/rest/1/io3epfs2noz272g3/"
 URL_BASE_ERRO = "https://b24-8d71jf.bitrix24.com.br/rest/1/fbyoqtsl8xlgrm6d/"
 ID_BASE = 270
 DATA_BASE = "1970-05-01"
