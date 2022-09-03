@@ -30,11 +30,18 @@ describe Bitrix24::Common do
   before(:all) do
     @bitrix24 = Bitrix24::Common.new
     @bitrix24.url = URL_BASE_ERRO
+    @bitrix24_url_erro = Bitrix24::Common.new
+    @bitrix24_url_erro.url = "String aleatoria"
   end
   it {
     expect do
       @bitrix24.add(URL_BASE_ERRO)
-    end.to(raise_error(an_instance_of(Bitrix24::Error)))
+    end.to(raise_error(an_instance_of(Bitrix24::InvalidURIError)))
+  }
+  it {
+    expect do
+      @bitrix24_url_erro.add(URL_BASE_ERRO)
+    end.to(raise_error(an_instance_of(Bitrix24::InvalidURIError)))
   }
 end
 

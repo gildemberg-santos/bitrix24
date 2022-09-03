@@ -1,9 +1,10 @@
 example_id                   | status | run_time        |
 ---------------------------- | ------ | --------------- |
-./spec/bitrix24_spec.rb[1:1] | passed | 0.28957 seconds |
-./spec/bitrix24_spec.rb[2:1] | passed | 2.25 seconds    |
-./spec/bitrix24_spec.rb[2:2] | passed | 0.00324 seconds |
-./spec/bitrix24_spec.rb[2:3] | passed | 0.80688 seconds |
-./spec/bitrix24_spec.rb[2:4] | passed | 0.00129 seconds |
-./spec/bitrix24_spec.rb[2:5] | passed | 0.00082 seconds |
-./spec/bitrix24_spec.rb[2:6] | passed | 0.00178 seconds |
+./spec/bitrix24_spec.rb[1:1] | passed | 0.29666 seconds |
+./spec/bitrix24_spec.rb[1:2] | passed | 0.00535 seconds |
+./spec/bitrix24_spec.rb[2:1] | passed | 0.87556 seconds |
+./spec/bitrix24_spec.rb[2:2] | passed | 0.0008 seconds  |
+./spec/bitrix24_spec.rb[2:3] | passed | 2.25 seconds    |
+./spec/bitrix24_spec.rb[2:4] | passed | 0.00071 seconds |
+./spec/bitrix24_spec.rb[2:5] | passed | 0.00223 seconds |
+./spec/bitrix24_spec.rb[2:6] | passed | 0.00075 seconds |
