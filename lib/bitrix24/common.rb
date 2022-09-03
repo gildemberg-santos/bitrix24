@@ -5,7 +5,7 @@ module Bitrix24
     attr_accessor :url
 
     def add(params)
-      raise Bitrix24::Error, 'Lead fields is required' if blank? params
+      raise Bitrix24::Error, "Lead fields is required" if blank?(params)
 
       request_execute(ENDPOINT_ADD, params)
     rescue Bitrix24::Error => e
@@ -13,7 +13,7 @@ module Bitrix24
     end
 
     def get(id)
-      raise Bitrix24::Error, 'Id is required' if blank? id
+      raise Bitrix24::Error, "Id is required" if blank?(id)
 
       request_select(ENDPOINT_GET, id)
     rescue Bitrix24::Error => e
@@ -35,24 +35,24 @@ module Bitrix24
     private
 
     def parse_fields_to_string(fields)
-      query = ''
+      query = ""
       fields.each do |key, value|
         value = parse_string_to_date(value) if key == :BIRTHDATE
-        query += if %w[EMAIL PHONE].include?(key)
-                   "FIELDS[#{key}][0][VALUE]=#{value}&"
-                 else
-                   "FIELDS[#{key}]=#{value}&"
-                 end
+        query += if ["EMAIL", "PHONE"].include?(key)
+          "FIELDS[#{key}][0][VALUE]=#{value}&"
+        else
+          "FIELDS[#{key}]=#{value}&"
+        end
       end
-      query.gsub('FIELDS[ID]', 'ID') if query.include?('FIELDS[ID]')
-      query.slice 0..-2
+      query.gsub("FIELDS[ID]", "ID") if query.include?("FIELDS[ID]")
+      query.slice(0..-2)
     rescue Bitrix24::Error => e
       raise e
     end
 
     def request_execute(endpoint, params, id = nil)
       params = JSON.parse(params.to_json)
-      fields = ''
+      fields = ""
       fields = parse_fields_to_string(params) if params.is_a?(Hash)
       fields += "ID=#{id}" if id.is_a?(Integer)
       fields ||= id if id.is_a?(Integer)

@@ -6,11 +6,9 @@ module Bitrix24
     attr_writer :access_token
 
     def initialize(url)
-      raise Bitrix24::Error, 'URL is required' if blank? url
+      raise Bitrix24::Error, "URL is required" if blank?(url)
 
       @url = url
-    rescue Bitrix24::Error => e
-      raise e
     end
 
     def get
@@ -19,13 +17,13 @@ module Bitrix24
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = Net::HTTP::Get.new(uri.request_uri)
-      request['Content-Type'] = 'application/json'
+      request["Content-Type"] = "application/json"
       responde = http.request(request)
 
       @json = JSON.parse(responde.body)
       @status_code = responde.code.to_i
 
-      raise Bitrix24::Error, @json['error_description'] if @status_code != 200
+      raise Bitrix24::Error, @json["error_description"] if @status_code != 200
     rescue Bitrix24::Error => e
       raise e
     end
