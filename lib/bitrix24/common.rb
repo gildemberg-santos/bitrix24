@@ -2,7 +2,7 @@
 
 module Bitrix24
   class Common
-    attr_accessor :url
+    attr_accessor :url, :update_lead
 
     def add(params)
       Bitrix24.validate_lead(params)

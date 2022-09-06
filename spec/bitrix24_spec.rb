@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-require "yaml"
-require "uri"
-require "json"
-require "net/http"
-require "active_support/time"
-require "logger"
-require "bitrix24/version"
-require "bitrix24/endpoint"
-require "bitrix24/base"
-require "bitrix24/debug"
-require "bitrix24/error"
-require "bitrix24/request"
-require "bitrix24"
-
-include Bitrix24
-
 LEAD_BASE = { TITLE: "TDD", NAME: "Test Lead", PHONE: "123456789", EMAIL: "teste@teste.com" }.freeze
 FIELD_CUSTOM_BASE = { name: "TEST_TDD", value: "Teste" }.freeze
 LEAD_CUSTOM_BASE = { TEST_TDD: "Teste" }.freeze
