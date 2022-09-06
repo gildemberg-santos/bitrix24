@@ -17,16 +17,18 @@ describe Bitrix24::Common do
     @bitrix24_url_erro = Bitrix24::Common.new
     @bitrix24_url_erro.url = "String aleatoria"
   end
-  it {
+
+  it "Url invalida" do
     expect do
       @bitrix24.add(URL_BASE_ERRO)
     end.to(raise_error(an_instance_of(Bitrix24::InvalidURIError)))
-  }
-  it {
+  end
+
+  it "Url invalida com testo aleatorio" do
     expect do
       @bitrix24_url_erro.add(URL_BASE_ERRO)
     end.to(raise_error(an_instance_of(Bitrix24::InvalidURIError)))
-  }
+  end
 end
 
 describe Bitrix24::Common do
@@ -35,21 +37,31 @@ describe Bitrix24::Common do
     @bitrix24.url = URL_BASE
   end
 
-  it { expect(@bitrix24.add(LEAD_BASE)["result"].present?).to(eq(true)) }
+  it "Cadastrar Lead" do
+    expect(@bitrix24.add(LEAD_BASE)["result"].present?).to(eq(true))
+  end
 
-  it { expect { @bitrix24.add(nil)["result"] }.to(raise_error(an_instance_of(Bitrix24::Error))) }
+  it "Cadastrar Lead vazio" do
+    expect { @bitrix24.add(nil)["result"] }.to(raise_error(an_instance_of(Bitrix24::Error)))
+  end
 
-  it {
+  it "Cadastrar Lead com Lead Custom" do
     expect(
       @bitrix24.add(
         @bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)
       )["result"].present?
     ).to(eq(true))
-  }
+  end
 
-  it { expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)).to(eq(MERGE_CUSTOM_BASE)) }
+  it "Mesclar Lead base com Lead Custom" do
+    expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)).to(eq(MERGE_CUSTOM_BASE))
+  end
 
-  it { expect(@bitrix24.merge_fields_and_custom_fields(nil, FIELD_CUSTOM_BASE)).to(eq(LEAD_CUSTOM_BASE)) }
+  it "Mesclar Lead base nil com Lead Custom" do
+    expect(@bitrix24.merge_fields_and_custom_fields(nil, FIELD_CUSTOM_BASE)).to(eq(LEAD_CUSTOM_BASE))
+  end
 
-  it { expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, nil)).to(eq(LEAD_BASE)) }
+  it "Mesclar Lead base com Lead Custom nil" do
+    expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, nil)).to(eq(LEAD_BASE))
+  end
 end
