@@ -2,6 +2,7 @@
 
 LEAD_BASE = { TITLE: "TDD", NAME: "Test Lead", PHONE: "123456789", EMAIL: "teste@teste.com" }.freeze
 FIELD_CUSTOM_BASE = { name: "TEST_TDD", value: "Teste" }.freeze
+FIELD_CUSTOM_BASE_2 = [{ name: "TEST_TDD", value: "Teste" }].freeze
 LEAD_CUSTOM_BASE = { TEST_TDD: "Teste" }.freeze
 MERGE_CUSTOM_BASE = { TITLE: "TDD", NAME: "Test Lead", PHONE: "123456789", EMAIL: "teste@teste.com",
                       TEST_TDD: "Teste", }.freeze
@@ -55,6 +56,10 @@ describe Bitrix24::Common do
 
   it "Mesclar Lead base com Lead Custom" do
     expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)).to(eq(MERGE_CUSTOM_BASE))
+  end
+
+  it "Mesclar Lead base com Lead Custom Array" do
+    expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE_2)).to(eq(MERGE_CUSTOM_BASE))
   end
 
   it "Mesclar Lead base nil com Lead Custom" do
