@@ -83,6 +83,8 @@ module Bitrix24
     end
 
     def normalize_hash(value)
+      return value unless value.is_a?(Hash) && value.present?
+
       value&.deep_symbolize_keys
     end
   end
