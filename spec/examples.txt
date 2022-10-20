@@ -1,18 +1,21 @@
 example_id                   | status | run_time        |
 ---------------------------- | ------ | --------------- |
-./spec/base_spec.rb[1:1]     | passed | 0.0005 seconds  |
-./spec/base_spec.rb[1:2]     | passed | 0.0004 seconds  |
-./spec/base_spec.rb[1:3]     | passed | 0.00032 seconds |
-./spec/base_spec.rb[1:4]     | passed | 0.00461 seconds |
-./spec/base_spec.rb[1:5]     | passed | 0.00023 seconds |
-./spec/base_spec.rb[1:6]     | passed | 0.00014 seconds |
-./spec/base_spec.rb[1:7]     | passed | 0.00136 seconds |
-./spec/bitrix24_spec.rb[1:1] | passed | 0.3025 seconds  |
-./spec/bitrix24_spec.rb[1:2] | passed | 0.00023 seconds |
-./spec/bitrix24_spec.rb[2:1] | passed | 0.71659 seconds |
-./spec/bitrix24_spec.rb[2:2] | passed | 0.00018 seconds |
-./spec/bitrix24_spec.rb[2:3] | passed | 0.7686 seconds  |
-./spec/bitrix24_spec.rb[2:4] | passed | 0.00015 seconds |
-./spec/bitrix24_spec.rb[2:5] | passed | 0.00015 seconds |
-./spec/bitrix24_spec.rb[2:6] | passed | 0.00017 seconds |
-./spec/bitrix24_spec.rb[2:7] | passed | 0.00012 seconds |
+./spec/base_spec.rb[1:1]     | passed | 0.00038 seconds |
+./spec/base_spec.rb[1:2]     | passed | 0.00035 seconds |
+./spec/base_spec.rb[1:3]     | passed | 0.00016 seconds |
+./spec/base_spec.rb[1:4]     | passed | 0.00912 seconds |
+./spec/base_spec.rb[1:5]     | passed | 0.00231 seconds |
+./spec/base_spec.rb[1:6]     | passed | 0.00023 seconds |
+./spec/base_spec.rb[1:7]     | passed | 0.00028 seconds |
+./spec/base_spec.rb[1:8]     | passed | 0.00021 seconds |
+./spec/base_spec.rb[1:9]     | passed | 0.00015 seconds |
+./spec/base_spec.rb[1:10]    | passed | 0.00109 seconds |
+./spec/bitrix24_spec.rb[1:1] | passed | 0.36906 seconds |
+./spec/bitrix24_spec.rb[1:2] | passed | 0.00293 seconds |
+./spec/bitrix24_spec.rb[2:1] | passed | 0.51649 seconds |
+./spec/bitrix24_spec.rb[2:2] | passed | 0.00042 seconds |
+./spec/bitrix24_spec.rb[2:3] | passed | 0.74525 seconds |
+./spec/bitrix24_spec.rb[2:4] | passed | 0.00026 seconds |
+./spec/bitrix24_spec.rb[2:5] | passed | 0.00017 seconds |
+./spec/bitrix24_spec.rb[2:6] | passed | 0.00035 seconds |
+./spec/bitrix24_spec.rb[2:7] | passed | 0.00027 seconds |

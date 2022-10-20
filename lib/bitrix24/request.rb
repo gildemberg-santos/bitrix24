@@ -3,10 +3,11 @@
 module Bitrix24
   # Request class for Bitrix24
   class Request
-    def initialize(url)
+    def initialize(url, fields={})
       raise Bitrix24::InvalidURIError, "URL is required" if url.blank?
 
       @url = url
+      @fields = fields
       @response = nil
     end
 
@@ -31,8 +32,9 @@ module Bitrix24
     private
 
     def request_http
-      request = Net::HTTP::Get.new(@url.request_uri)
+      request = Net::HTTP::Post.new(@url.request_uri)
       request["Content-Type"] = "application/json"
+      request.set_form_data @fields if @fields.present?
       request
     end
 

@@ -1,12 +1,28 @@
 # frozen_string_literal: true
 
-LEAD_BASE = { TITLE: "TDD", NAME: "Test Lead", PHONE: "123456789", EMAIL: "teste@teste.com" }.freeze
-FIELD_CUSTOM_BASE = { name: "TEST_TDD", value: "Teste" }.freeze
-FIELD_CUSTOM_BASE_2 = [{ name: "TEST_TDD", value: "Teste" }].freeze
-LEAD_CUSTOM_BASE = { TEST_TDD: "Teste" }.freeze
-MERGE_CUSTOM_BASE = { TITLE: "TDD", NAME: "Test Lead", PHONE: "123456789", EMAIL: "teste@teste.com",
-                      TEST_TDD: "Teste", }.freeze
-URL_BASE = "https://b24-7wstcz.bitrix24.com.br/rest/1/io3epfs2noz272g3/"
+LEAD_BASE = {
+  TITLE: "TDD",
+  NAME: "Test Lead",
+  PHONE: "123456789",
+  EMAIL: "teste@teste.com",
+  WEB: "https://www.teste.com",
+  UTM_TERM: "https://www.teste.com.br/?utm_source=teste01&utm_medium=teste02&utm_campaign=teste03&utm_content=teste04&utm_term=teste05",
+}
+
+FIELD_CUSTOM_BASE = { name: "TEST_TDD", value: "Teste" }
+FIELD_CUSTOM_BASE_2 = [{ name: "TEST_TDD", value: "Teste" }]
+LEAD_CUSTOM_BASE = { TEST_TDD: "Teste" }
+MERGE_CUSTOM_BASE = {
+  TITLE: "TDD",
+  NAME: "Test Lead",
+  PHONE: "123456789",
+  EMAIL: "teste@teste.com",
+  TEST_TDD: "Teste",
+  UTM_TERM: "https://www.teste.com.br/?utm_source=teste01&utm_medium=teste02&utm_campaign=teste03&utm_content=teste04&utm_term=teste05",
+  WEB: "https://www.teste.com",
+}
+
+URL_BASE = "https://b24-e3zl1v.bitrix24.com.br/rest/1/o5qzfcsu446je5hd/"
 URL_BASE_ERRO = "https://b24-8d71jf.bitrix24.com.br/rest/1/fbyoqtsl8xlgrm6d/"
 ID_BASE = 270
 DATA_BASE = "1970-05-01"
