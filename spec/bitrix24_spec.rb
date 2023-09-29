@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 LEAD_BASE = {
   TITLE: 'TDD',
   NAME: 'Test Lead',
@@ -71,15 +73,21 @@ describe Bitrix24::Common do
   end
 
   it 'Mesclar Lead base com Lead Custom' do
-    expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)).to(eq(MERGE_CUSTOM_BASE))
+    expect(
+      @bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE)
+    ).to(eq(MERGE_CUSTOM_BASE))
   end
 
   it 'Mesclar Lead base com Lead Custom Array' do
-    expect(@bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE_2)).to(eq(MERGE_CUSTOM_BASE))
+    expect(
+      @bitrix24.merge_fields_and_custom_fields(LEAD_BASE, FIELD_CUSTOM_BASE_2)
+    ).to(eq(MERGE_CUSTOM_BASE))
   end
 
   it 'Mesclar Lead base nil com Lead Custom' do
-    expect(@bitrix24.merge_fields_and_custom_fields(nil, FIELD_CUSTOM_BASE)).to(eq(LEAD_CUSTOM_BASE))
+    expect(
+      @bitrix24.merge_fields_and_custom_fields(nil, FIELD_CUSTOM_BASE)
+    ).to(eq(LEAD_CUSTOM_BASE))
   end
 
   it 'Mesclar Lead base com Lead Custom nil' do
