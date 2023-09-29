@@ -3,8 +3,8 @@
 module Bitrix24
   # Request class for Bitrix24
   class Request
-    def initialize(url, fields={})
-      raise Bitrix24::InvalidURIError, "URL is required" if url.blank?
+    def initialize(url, fields = {})
+      raise Bitrix24::InvalidURIError, 'URL is required' if url.blank?
 
       @url = url
       @fields = fields
@@ -15,14 +15,18 @@ module Bitrix24
       @response = http
       json
       if status_code != 200
-        raise Bitrix24::InvalidURIError, json["error_description"] if json["error"] == "PORTAL_DELETED"
+        if json['error'] == 'PORTAL_DELETED'
+          raise Bitrix24::InvalidURIError, json['error_description']
+        end
 
-        raise Bitrix24::Error, json["error_description"]
+        raise Bitrix24::Error, json['error_description']
       end
     end
 
     def json
       JSON.parse(@response.body)
+    rescue JSON::ParserError
+      raise Bitrix24::InvalidURIError, 'URL invalid'
     end
 
     def status_code
@@ -33,7 +37,7 @@ module Bitrix24
 
     def request_http
       request = Net::HTTP::Post.new(@url.request_uri)
-      request["Content-Type"] = "application/json"
+      request['Content-Type'] = 'application/json'
       request.set_form_data @fields if @fields.present?
       request
     end

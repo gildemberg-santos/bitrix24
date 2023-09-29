@@ -23,8 +23,12 @@ module Bitrix24
       fields_leads = Bitrix24.normalize_hash(fields_leads)
       fields_custom = Bitrix24.normalize_hash(fields_custom)
       fields.merge!(fields_leads) if fields_leads.instance_of?(Hash)
-      fields.merge!(parse_array_to_object(fields_custom)) if fields_custom.instance_of?(Array)
-      fields.merge!({ fields_custom[:name] => fields_custom[:value] }) if fields_custom.instance_of?(Hash)
+      if fields_custom.instance_of?(Array)
+        fields.merge!(parse_array_to_object(fields_custom))
+      end
+      if fields_custom.instance_of?(Hash)
+        fields.merge!(fields_custom[:name] => fields_custom[:value])
+      end
       Bitrix24.normalize_hash(fields)
     rescue Bitrix24::Error => e
       raise e
@@ -32,9 +36,8 @@ module Bitrix24
 
     def request_execute(endpoint, params, id = nil)
       params = JSON.parse(params.to_json)
-      fields_url = ""
+      fields_url = ''
       fields_post = {}
-      # fields_url += Bitrix24.parse_fields_to_string(params) if params.is_a?(Hash)
       fields_post = Bitrix24.create_hash(params) if params.is_a?(Hash)
       fields_url += Bitrix24.string_id(id)
       fields_url ||= id if id.is_a?(Integer)
@@ -44,7 +47,7 @@ module Bitrix24
     end
 
     def request_select(endpoint, id = nil)
-      fields = ""
+      fields = ''
       fields += Bitrix24.string_id(id)
       result = Bitrix24::Request.new(Bitrix24.create_uri(@url, endpoint, fields))
       result.get
@@ -57,7 +60,7 @@ module Bitrix24
         field = Bitrix24.normalize_hash(field)
         next if field.nil? || field[:name].nil? || field[:value].nil?
 
-        fields.merge!({ field[:name] => field[:value] })
+        fields.merge!(field[:name] => field[:value])
       end
       fields
     end

@@ -2,17 +2,21 @@
 
 module Bitrix24
   def self.validate_url(url)
-    raise Bitrix24::InvalidURIError, "URL is must be an String" unless url.is_a?(String)
-    raise Bitrix24::InvalidURIError, "URL is required" if url.blank?
-    raise Bitrix24::InvalidURIError, "URL is invalid" unless Bitrix24.validate_url?(url)
+    unless url.is_a?(String)
+      raise Bitrix24::InvalidURIError, 'URL is must be an String'
+    end
+    raise Bitrix24::InvalidURIError, 'URL is required' if url.blank?
+    unless Bitrix24.validate_url?(url)
+      raise Bitrix24::InvalidURIError, 'URL is invalid'
+    end
   end
 
   def self.validate_lead(lead)
-    raise Bitrix24::Error, "Lead fields is required" if lead.blank?
+    raise Bitrix24::Error, 'Lead fields is required' if lead.blank?
   end
 
   def self.validate_lead_id(id)
-    raise Bitrix24::Error, "Lead id must be an integer" unless id.is_a?(Integer)
+    raise Bitrix24::Error, 'Lead id must be an integer' unless id.is_a?(Integer)
   end
 
   def self.validate_url?(url)
@@ -23,13 +27,14 @@ module Bitrix24
   end
 
   def self.validate_email(email)
-    return "" unless email.is_a?(String)
+    return '' unless email.is_a?(String)
 
-    email.match?(/.*@.*/) ? email.downcase.gsub(" ", "").gsub("/", "").gsub("<br>", "") : ""
+    regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    email.match?(regex) ? email.downcase.gsub(' ', '').gsub('/', '').gsub('<br>', '') : ''
   end
 
   def self.create_uri(url_base, endpoint, query)
-    url_base = url_base[0...-1] if url_base[-1] == "/"
+    url_base = url_base[0...-1] if url_base[-1] == '/'
     uri = URI("#{url_base}/#{endpoint}.json")
     uri.query = query if query.is_a?(String)
     uri
@@ -39,7 +44,7 @@ module Bitrix24
     if id.is_a?(Integer)
       "ID=#{id}"
     else
-      ""
+      ''
     end
   end
 
@@ -48,10 +53,10 @@ module Bitrix24
     result = {}
     fields.each do |key, value|
       value = parse_string_to_date(value) if key == :BIRTHDATE
-      if [:EMAIL, :PHONE, :WEB, :IM].include?(key)
-        result.merge!({ "FIELDS[#{key}][0][VALUE]" => value}) # , "FIELDS[#{key}][0][VALUE_TYPE]" => "WORK"
+      if %i[EMAIL PHONE WEB IM].include?(key)
+        result.merge!("FIELDS[#{key}][0][VALUE]" => value) # , "FIELDS[#{key}][0][VALUE_TYPE]" => "WORK"
       else
-        result.merge!({ "FIELDS[#{key}]" => value })
+        result.merge!("FIELDS[#{key}]" => value)
       end
     end
     result
@@ -64,16 +69,16 @@ module Bitrix24
   end
 
   def self.parse_fields_to_string(fields)
-    query = ""
+    query = ''
     fields.each do |key, value|
       value = parse_string_to_date(value) if key == :BIRTHDATE
-      query += if [:EMAIL, :PHONE, :WEB, :IM].include?(key)
-        "FIELDS[#{key}][0][VALUE]=#{value}&"
-      else
-        "FIELDS[#{key}]=#{value}&"
+      query += if %i[EMAIL PHONE WEB IM].include?(key)
+                 "FIELDS[#{key}][0][VALUE]=#{value}&"
+               else
+                 "FIELDS[#{key}]=#{value}&"
       end
     end
-    query.gsub("FIELDS[ID]", "ID") if query.include?("FIELDS[ID]")
+    query.gsub('FIELDS[ID]', 'ID') if query.include?('FIELDS[ID]')
     query
   end
 
