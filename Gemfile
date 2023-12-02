@@ -7,6 +7,6 @@ gemspec
 gem 'activesupport', '~> 5.0', '>= 5.0.0.1'
 gem 'json', '~> 2.7'
 gem 'rails', '~> 5.2.8.1'
-gem 'rake', '~> 13.0'
+gem 'rake', '~> 13.1'
 gem 'rspec', '~> 3.9'
 gem 'rubocop', '~> 1.50.2'
