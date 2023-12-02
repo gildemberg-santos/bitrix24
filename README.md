@@ -1,6 +1,6 @@
 # Bitrix24
 
-![example workflow](https://github.com/gildemberg-santos/bitrix24/actions/workflows/codeql-analysis.yml/badge.svg)
+![example workflow](https://github.com/gildemberg-santos/bitrix24/actions/workflows/main.yml/badge.svg)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bitrix24`. To experiment with that code, run `bin/console` for an interactive prompt.
 
