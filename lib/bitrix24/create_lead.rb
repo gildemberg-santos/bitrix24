@@ -22,7 +22,7 @@ module Bitrix24
       params = JSON.parse(params.to_json)
       fields_post = Utils.parse_to_payload(params) if params.is_a?(Hash)
       result =
-        RequestV2.new(
+        Request.new(
           Utils.build_uri(@url, endpoint, Utils.query_id(id)),
           fields_post
         )
