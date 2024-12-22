@@ -2,8 +2,8 @@
 
 require "spec_helper"
 
-describe Bitrix24::CreateLead do
-  subject(:service) { described_class.new(url, lead_fields, custom_fields).call }
+RSpec.describe Bitrix24::CreateLead do
+  subject(:service) { described_class.call(url: url, lead_fields: lead_fields, custom_fields: custom_fields) }
 
   let(:url) { "https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/" }
   let(:lead_fields) { { "TITLE" => "Test" } }
@@ -12,24 +12,13 @@ describe Bitrix24::CreateLead do
   let(:code) { 200 }
   let(:body) { fields.to_json }
 
-  before do
-    WebMock.enable!
-
-    stub_request(:post, "#{url}crm.lead.add.json")
-      .with(
-        body: body,
-        headers: { "Content-Type": "application/json" }
-      )
-      .to_return(
-        status: code,
-        body: {}.to_json,
-        headers: { "Content-Type": "application/json" }
-      )
-  end
-
   describe "#call" do
     context "when success" do
-      it { expect(service).to be_nil }
+      it "returns the expected response" do
+        VCR.use_cassette("create_lead_success", record: :new_episodes) do
+          expect(service).to be_success
+        end
+      end
     end
 
     context "when failure" do

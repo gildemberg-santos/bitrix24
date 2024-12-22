@@ -1,32 +1,31 @@
 # frozen_string_literal: true
 
 module Bitrix24
-  class CreateLead
-    attr_accessor :url, :update_lead
+  class CreateLead < Micro::Case
+    attributes :url, :lead_fields, :custom_fields
 
-    def initialize(url, lead_fields, custom_fields)
+    def call!
       @url = url
       @params = Utils.merge_fields_and_custom_fields(lead_fields, custom_fields)
 
-      Utils.validate_lead(@params)
-      Utils.validate_url(@url)
-    end
+      Utils.validate_lead(params)
+      Utils.validate_url(url)
 
-    def call
-      request_execute(ENDPOINT_ADD, @params)
+      request_execute(ENDPOINT_ADD, params)
     end
 
     private
 
+    attr_reader :url, :update_lead, :params
+
     def request_execute(endpoint, params, id = nil)
       params = JSON.parse(params.to_json)
       fields_post = Utils.parse_to_payload(params) if params.is_a?(Hash)
-      result =
-        Request.new(
-          Utils.build_uri(@url, endpoint, Utils.query_id(id)),
-          fields_post
-        )
-      result.call
+
+      Request.call(
+        url: Utils.build_uri(@url, endpoint, Utils.query_id(id)),
+        fields: fields_post
+      )
     end
   end
 end
