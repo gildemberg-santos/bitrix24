@@ -91,7 +91,7 @@ module Bitrix24
         field = deep_symbolize_keys(field)
         next if field.nil? || field[:name].nil? || field[:value].nil?
 
-        fields.merge!(field[:name] => field[:value])
+        fields.merge!(deep_symbolize_keys({ field[:name] => field[:value] }))
       end
       fields
     end

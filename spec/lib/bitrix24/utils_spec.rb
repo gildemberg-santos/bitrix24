@@ -93,6 +93,18 @@ RSpec.describe Bitrix24::Utils do
     end
   end
 
+  describe ".parse_array_to_object" do
+    context "when array is invalid" do
+      it { expect { util.parse_array_to_object(nil) }.to raise_error(NoMethodError) }
+      it { expect { util.parse_array_to_object("") }.to raise_error(NoMethodError) }
+    end
+
+    context "when array is valid" do
+      it { expect(util.parse_array_to_object([])).to eq({}) }
+      it { expect(util.parse_array_to_object([{ "name" => "name", "value" => "Gildemberg" }])).to eq({ name: "Gildemberg" }) }
+    end
+  end
+
   describe ".validate_url" do
     context "when url is valid" do
       it { expect { util.validate_url("https://www.google.com") }.not_to raise_error }
