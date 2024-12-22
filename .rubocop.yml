@@ -18,6 +18,13 @@ AllCops:
   StyleGuideBaseURL: https://shopify.github.io/ruby-style-guide/
   TargetRubyVersion: 2.6.10
 
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - staging
+    - production
+    - test
+
 Bundler/OrderedGems:
   Enabled: false
 
@@ -326,18 +333,7 @@ Naming/HeredocDelimiterNaming:
   Enabled: false
 
 Naming/InclusiveLanguage:
-  Enabled: true
-  FlaggedTerms:
-    master:
-      Suggestions:
-        - main
-        - primary
-        - leader
-      AllowedRegex:
-        - 'blob/master/'
-        - 'origin/master'
-        - 'mastercard'
-        - 'webmaster'
+  Enabled: false
 
 Naming/MemoizedInstanceVariableName:
   Enabled: false
@@ -470,7 +466,7 @@ Style/FormatStringToken:
 
 Style/FrozenStringLiteralComment:
   SafeAutoCorrect: true
-  Details: 'Add # frozen_string_literal: true to the top of the file. Frozen string
+  Details: 'Add `# frozen_string_literal: true` to the top of the file. Frozen string
     literals will become the default in a future Ruby version, and we want to make
     sure we''re ready.'
 
@@ -700,4 +696,42 @@ Style/WordArray:
   EnforcedStyle: percent
 
 Style/YodaCondition:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Severity: info
+  Max: 8
+
+RSpec/VerifiedDoubles:
+  Severity: info
+
+RSpec/NestedGroups:
+  Severity: info
+  Max: 5
+
+RSpec/MultipleExpectations:
+  Severity: info
+
+RSpec/ExpectActual:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Severity: info
+
+RSpec/ExampleLength:
+  Severity: info
+
+RSpec/MessageSpies:
+ Severity: info
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/ImplicitSubject:
+  Severity: info
+
+Rails/SkipsModelValidations:
+  AllowedMethods: [touch]
+
+RSpec/MatchArray:
   Enabled: false
