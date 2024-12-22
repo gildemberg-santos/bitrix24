@@ -5,9 +5,9 @@ require "spec_helper"
 describe Bitrix24::CreateLead do
   subject(:service) { described_class.new(url, lead_fields, custom_fields).call }
 
-  let(:url) { "https://b24-oyew5y.bitrix24.com.br/rest/1/2zrkgdgw1xtatp6q/" }
+  let(:url) { "https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/" }
   let(:lead_fields) { { "TITLE" => "Test" } }
-  let(:custom_fields) { [{"name" => "TEST_DD", "value" => "VALOR_ADD"}] }
+  let(:custom_fields) { [{ "name" => "TEST_DD", "value" => "VALOR_ADD" }] }
   let(:fields) { { "FIELDS[TITLE]": "Test", "FIELDS[TEST_DD]": "VALOR_ADD" } }
   let(:code) { 200 }
   let(:body) { fields.to_json }
