@@ -12,7 +12,7 @@ RSpec.describe Bitrix24::CreateLead do
   describe "#call" do
     context "when success" do
       it "returns the expected response" do
-        VCR.use_cassette("create_lead_success", record: :new_episodes) do
+        VCR.use_cassette("create_lead_success", record: :none) do
           expect(subject).to be_success
           expect(subject.data[:json][:result]).to eq(23)
         end
@@ -23,7 +23,7 @@ RSpec.describe Bitrix24::CreateLead do
       let(:url) { "https://b24-iq2a30.bitrix24.com.br/rest/1/invalid/" }
 
       it "raises an error" do
-        VCR.use_cassette("create_lead_failure", record: :new_episodes) do
+        VCR.use_cassette("create_lead_failure", record: :none) do
           expect(subject).to be_failure
           expect(subject.data[:error]).to eq("Invalid request credentials")
         end
