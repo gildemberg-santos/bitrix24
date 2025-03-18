@@ -1,0 +1,198 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/crm.lead.add.json
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"TITLE":"Test"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Dec 2024 14:41:09 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      P3p:
+      - policyref="/bitrix/p3p.xml", CP="NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS
+        UNI COM NAV INT DEM STA"
+      X-Powered-Cms:
+      - Bitrix Site Manager (bc2cad9153cb418bb2dfd5602c3c3754)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - qmb=0.; path=/
+      X-Bitrix24-Date:
+      - '1734875379'
+      X-Bitrix24-User:
+      - '0.'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - origin, content-type, accept
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Bitrix-Rest-Time:
+      - '0.2560501099'
+      X-Bitrix-Rest-User-Time:
+      - '0.1132340000'
+      X-Bitrix-Rest-System-Time:
+      - '0.0277790000'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      Server-Timing:
+      - t1;dur=0.420, t2;dur=0.420, t3;dur=0.000
+      - tc1;dur=53018, tc2;dur=9569, tc3;dur=20
+      X-Bitrix-Ri:
+      - 675078d4e5b7582ae0defc710fbd785e
+      X-Bitrix-Lb:
+      - lb-sa-2
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":21,"time":{"start":1734878469.3942211,"finish":1734878469.6728921,"duration":0.2786710262298584,"processing":0.25605010986328125,"date_start":"2024-12-22T17:41:09+03:00","date_finish":"2024-12-22T17:41:09+03:00","operating_reset_at":1734879069,"operating":2.3702056407928467}}'
+  recorded_at: Sun, 22 Dec 2024 14:41:09 GMT
+- request:
+    method: post
+    uri: https://b24-iq2a30.bitrix24.com.br/rest/1/invalid/crm.lead.add.json
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"TITLE":"Test"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Dec 2024 14:42:46 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      P3p:
+      - policyref="/bitrix/p3p.xml", CP="NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS
+        UNI COM NAV INT DEM STA"
+      X-Powered-Cms:
+      - Bitrix Site Manager (bc2cad9153cb418bb2dfd5602c3c3754)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - qmb=0.; path=/
+      X-Bitrix24-Date:
+      - '1734875379'
+      X-Bitrix24-User:
+      - '0.'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - origin, content-type, accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Bitrix-Rest-Time:
+      - '0.0000000000'
+    body:
+      encoding: UTF-8
+      string: '{"error":"INVALID_CREDENTIALS","error_description":"Invalid request
+        credentials"}'
+  recorded_at: Sun, 22 Dec 2024 14:42:46 GMT
+- request:
+    method: post
+    uri: https://b24-iq2a30.bitrix24.com.br/rest/1/invalid/crm.lead.add.json
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"TITLE":"Test"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Dec 2024 14:43:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      P3p:
+      - policyref="/bitrix/p3p.xml", CP="NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS
+        UNI COM NAV INT DEM STA"
+      X-Powered-Cms:
+      - Bitrix Site Manager (bc2cad9153cb418bb2dfd5602c3c3754)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - qmb=0.; path=/
+      X-Bitrix24-Date:
+      - '1734875379'
+      X-Bitrix24-User:
+      - '0.'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - origin, content-type, accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Bitrix-Rest-Time:
+      - '0.0000000000'
+    body:
+      encoding: UTF-8
+      string: '{"error":"INVALID_CREDENTIALS","error_description":"Invalid request
+        credentials"}'
+  recorded_at: Sun, 22 Dec 2024 14:43:47 GMT
+recorded_with: VCR 6.3.1

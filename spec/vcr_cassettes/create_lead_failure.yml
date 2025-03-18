@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://b24-iq2a30.bitrix24.com.br/rest/1/invalid/crm.lead.add.json
+    body:
+      encoding: UTF-8
+      string: '{"FIELDS[TITLE]":"Test","FIELDS[TEST_DD]":"VALOR_ADD"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Dec 2024 16:11:49 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      P3p:
+      - policyref="/bitrix/p3p.xml", CP="NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS
+        UNI COM NAV INT DEM STA"
+      X-Powered-Cms:
+      - Bitrix Site Manager (bc2cad9153cb418bb2dfd5602c3c3754)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - qmb=0.; path=/
+      X-Bitrix24-Date:
+      - '1734875379'
+      X-Bitrix24-User:
+      - '0.'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - origin, content-type, accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Bitrix-Rest-Time:
+      - '0.0000000000'
+    body:
+      encoding: UTF-8
+      string: '{"error":"INVALID_CREDENTIALS","error_description":"Invalid request
+        credentials"}'
+  recorded_at: Sun, 22 Dec 2024 16:11:49 GMT
+recorded_with: VCR 6.3.1

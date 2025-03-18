@@ -1,52 +1,47 @@
 # frozen_string_literal: true
 
 module Bitrix24
-  # Request class for Bitrix24
-  class Request
-    def initialize(url, fields = {})
-      raise Bitrix24::InvalidURIError, 'URL is required' if url.blank?
+  class Request < Micro::Case
+    attributes :url, :fields
+
+    def call!
+      raise Bitrix24::InvalidURIError, "URL is required" unless Utils.url?(url)
 
       @url = url
       @fields = fields
-      @response = nil
-    end
 
-    def get
-      @response = http
-      json
-      if status_code != 200
-        if json['error'] == 'PORTAL_DELETED'
-          raise Bitrix24::InvalidURIError, json['error_description']
-        end
+      request
 
-        raise Bitrix24::Error, json['error_description']
-      end
-    end
-
-    def json
-      JSON.parse(@response.body)
-    rescue JSON::ParserError
-      raise Bitrix24::InvalidURIError, 'URL invalid'
-    end
-
-    def status_code
-      @response.code.to_i
+      Success result: { json: json, status_code: status_code }
+    rescue Bitrix24::InvalidURIError => e
+      Failure(:invalid_uri, result: { error: e.message })
+    rescue Bitrix24::Error => e
+      Failure(:error, result: { error: e.message })
     end
 
     private
 
-    def request_http
-      request = Net::HTTP::Post.new(@url.request_uri)
-      request['Content-Type'] = 'application/json'
-      request.set_form_data @fields if @fields.present?
-      request
+    attr_reader :url, :fields, :json, :status_code
+
+    def request
+      response = HTTParty.post(url, body: fields.to_json, headers: headers)
+
+      @status_code = response.code.to_i
+      @json = JSON.parse(response.body).deep_symbolize_keys
+
+      raise_error
     end
 
-    def http
-      http = Net::HTTP.new(@url.host, @url.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      http.request(request_http)
+    def headers
+      { "Content-Type": "application/json" }
+    end
+
+    def raise_error
+      if status_code != 200 && json[:error] == "PORTAL_DELETED"
+        raise Bitrix24::InvalidURIError, json[:error_description]
+      end
+
+      raise Bitrix24::Error, json[:error_description] if status_code != 200
     end
   end
 end

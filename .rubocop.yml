@@ -1,0 +1,46 @@
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.6
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/BlockLength:
+  Max: 150
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 20
+
+Metrics/ClassLength:
+  Max: 300
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false

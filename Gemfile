@@ -1,12 +1,21 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gemspec
 
-gem 'activesupport', '~> 5.0', '>= 5.0.0.1'
-gem 'json', '~> 2.7'
-gem 'rails', '~> 5.2.8.1'
-gem 'rake', '~> 13.1'
-gem 'rspec', '~> 3.9'
-gem 'rubocop', '~> 1.50.2'
+gem "rake", ">= 13.0"
+
+gem "activesupport", ">= 5.2.1"
+gem "httparty", ">= 0.21.0"
+gem "json", ">= 2.6.3"
+gem "u-case", ">= 4.5.2"
+
+group :development do
+  gem "rspec", ">= 3.0"
+  gem "rubocop", ">= 1.58"
+  gem "ruby-lsp", ">= 0.13.0"
+  gem "solargraph", ">= 0.50.0"
+  gem "vcr", ">= 6.3"
+  gem "webmock", ">= 3.19.1"
+end

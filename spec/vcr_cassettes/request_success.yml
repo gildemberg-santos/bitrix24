@@ -1,0 +1,153 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/crm.lead.add.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Dec 2024 14:15:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      P3p:
+      - policyref="/bitrix/p3p.xml", CP="NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS
+        UNI COM NAV INT DEM STA"
+      X-Powered-Cms:
+      - Bitrix Site Manager (bc2cad9153cb418bb2dfd5602c3c3754)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - qmb=0.; path=/
+      X-Bitrix24-Date:
+      - '1734875379'
+      X-Bitrix24-User:
+      - '0.'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - origin, content-type, accept
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Bitrix-Rest-Time:
+      - '0.3297188282'
+      X-Bitrix-Rest-User-Time:
+      - '0.1290360000'
+      X-Bitrix-Rest-System-Time:
+      - '0.0143360000'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      Server-Timing:
+      - t1;dur=0.490, t2;dur=0.489, t3;dur=0.000
+      - tc1;dur=57375, tc2;dur=13250, tc3;dur=20
+      X-Bitrix-Ri:
+      - 5eca324ab4f75f07c66edeb9fc40dcd0
+      X-Bitrix-Lb:
+      - lb-sa
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":7,"time":{"start":1734876925.1371391,"finish":1734876925.487077,"duration":0.34993791580200195,"processing":0.32971882820129395,"date_start":"2024-12-22T17:15:25+03:00","date_finish":"2024-12-22T17:15:25+03:00","operating_reset_at":1734877525,"operating":2.3027751445770264}}'
+  recorded_at: Sun, 22 Dec 2024 14:15:25 GMT
+- request:
+    method: post
+    uri: https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/crm.lead.add.json
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"TITLE":"Test"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Dec 2024 14:39:21 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      P3p:
+      - policyref="/bitrix/p3p.xml", CP="NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS
+        UNI COM NAV INT DEM STA"
+      X-Powered-Cms:
+      - Bitrix Site Manager (bc2cad9153cb418bb2dfd5602c3c3754)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - qmb=0.; path=/
+      X-Bitrix24-Date:
+      - '1734875379'
+      X-Bitrix24-User:
+      - '0.'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - origin, content-type, accept
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Bitrix-Rest-Time:
+      - '0.5119888783'
+      X-Bitrix-Rest-User-Time:
+      - '0.1280330000'
+      X-Bitrix-Rest-System-Time:
+      - '0.0184790000'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      Server-Timing:
+      - t1;dur=0.673, t2;dur=0.673, t3;dur=0.000
+      - tc1;dur=50132, tc2;dur=9033, tc3;dur=20
+      X-Bitrix-Ri:
+      - 34d8eb61e586ca3785bdfd6c8c952c7e
+      X-Bitrix-Lb:
+      - lb-sa-2
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":19,"time":{"start":1734878361.2974429,"finish":1734878361.831773,"duration":0.53433012962341309,"processing":0.51198887825012207,"date_start":"2024-12-22T17:39:21+03:00","date_finish":"2024-12-22T17:39:21+03:00","operating_reset_at":1734878961,"operating":2.114168643951416}}'
+  recorded_at: Sun, 22 Dec 2024 14:39:21 GMT
+recorded_with: VCR 6.3.1
