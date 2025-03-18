@@ -101,7 +101,10 @@ RSpec.describe Bitrix24::Utils do
 
     context "when array is valid" do
       it { expect(util.parse_array_to_object([])).to eq({}) }
-      it { expect(util.parse_array_to_object([{ "name" => "name", "value" => "Gildemberg" }])).to eq({ name: "Gildemberg" }) }
+      it {
+        expect(util.parse_array_to_object([{ "name" => "name",
+                                             "value" => "Gildemberg" }])).to eq({ name: "Gildemberg" })
+      }
     end
   end
 
