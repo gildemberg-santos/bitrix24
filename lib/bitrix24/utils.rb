@@ -3,9 +3,7 @@
 module Bitrix24
   class Utils
     def self.url?(url)
-      if !url.is_a?(String) || url.blank? || !url.match?(URI.regexp(%w[http https]))
-        return false
-      end
+      return false if !url.is_a?(String) || url.blank? || !url.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
 
       true
     end
@@ -50,9 +48,9 @@ module Bitrix24
     end
 
     def self.validate_url(url)
-      unless url?(url)
-        raise Bitrix24::InvalidURIError, "URL is invalid"
-      end
+      return if url?(url)
+
+      raise Bitrix24::InvalidURIError, "URL is invalid"
     end
 
     def self.validate_lead(lead)
