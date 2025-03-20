@@ -11,7 +11,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'bitrix24'
+gem "bitrix24", git: "https://github.com/gildemberg-santos/bitrix24", branch: "master"
 ```
 
 And then execute:
@@ -24,7 +24,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To create a lead, you can use the following code:
+
+```ruby
+require "bitrix24"
+
+Bitrix24::CreateLead.call(
+    url: "https://your-domain.bitrix24.com.br/rest/1/your-api-key",
+    lead_fields: {
+        TITLE: "Lead title",
+        NAME: "Lead name",
+        LAST_NAME: "Lead last name",
+        PHONE: "Lead phone",
+        EMAIL: "Lead email",
+        SOURCE_ID: "Lead source id",
+        STATUS_ID: "Lead status id",
+        ASSIGNED_BY_ID: "Lead assigned by id",
+        UF_CRM_1619027320: "Lead custom field"
+    },
+    contact_fields: {[{ "name": "TEST_DD", "value": "VALOR_ADD" }]},
+)
+```
 
 ## Development
 
