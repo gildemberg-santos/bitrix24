@@ -4,4 +4,4 @@ set -euo pipefail
 IFS=$'\n\t'
 set -vx
 
-bundle install
+bundle install --without development test --redownload
