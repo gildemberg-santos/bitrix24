@@ -11,7 +11,7 @@ module Bitrix24
       Utils.validate_lead(params)
       Utils.validate_url(url)
 
-      request_execute(ENDPOINT_ADD, params)
+      request_execute(Bitrix24::Endpoints::Lead::ENDPOINT_ADD, params)
     end
 
     private
