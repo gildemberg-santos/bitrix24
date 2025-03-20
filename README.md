@@ -42,8 +42,35 @@ Bitrix24::CreateLead.call(
         ASSIGNED_BY_ID: "Lead assigned by id",
         UF_CRM_1619027320: "Lead custom field"
     },
-    contact_fields: {[{ "name": "TEST_DD", "value": "VALOR_ADD" }]},
+    contact_fields: [{ "name": "TEST_DD", "value": "VALOR_ADD" }],
 )
+```
+
+## Deprecated Usage
+
+The following example demonstrates a deprecated way to create a lead:
+
+```ruby
+require "bitrix24"
+
+bitrix24 = Bitrix24::Common.new
+
+fields_merge = bitrix24.merge_fields_and_custom_fields(
+  {
+    TITLE: "Lead title",
+    NAME: "Lead name",
+    LAST_NAME: "Lead last name",
+    PHONE: "Lead phone",
+    EMAIL: "Lead email",
+    SOURCE_ID: "Lead source id",
+    STATUS_ID: "Lead status id",
+    ASSIGNED_BY_ID: "Lead assigned by id",
+    UF_CRM_1619027320: "Lead custom field"
+  },
+  [{ name: "TEST_DD", value: "VALOR_ADD" }]
+)
+bitrix24.url = "https://your-domain.bitrix24.com.br/rest/1/your-api-key"
+bitrix24.add(fields_merge)
 ```
 
 ## Development
