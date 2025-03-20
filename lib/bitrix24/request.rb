@@ -24,7 +24,7 @@ module Bitrix24
     attr_reader :url, :fields, :json, :status_code
 
     def request
-      response = HTTParty.post(url, body: fields.to_json, headers: headers)
+      response = HTTParty.post(url, body: fields, headers: headers)
 
       @status_code = response.code.to_i
       @json = JSON.parse(response.body).deep_symbolize_keys
@@ -33,7 +33,7 @@ module Bitrix24
     end
 
     def headers
-      { "Content-Type": "application/json" }
+      { "Content-Type": "application/x-www-form-urlencoded" }
     end
 
     def raise_error
