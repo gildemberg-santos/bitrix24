@@ -9,16 +9,18 @@ Bitrix24 is a Ruby library for integration with the Bitrix24 API, allowing the c
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "bitrix24", git: "https://github.com/gildemberg-santos/bitrix24", branch: "master"
+gem "bitrix24", git: "https://github.com/gildemberg-santos/bitrix24"
 ```
 
 And then execute:
-
-    $ bundle install
+```sh
+bundle install
+```
 
 Or install it yourself as:
-
-    $ gem install bitrix24
+```sh
+gem install pkg/bitrix24-x.y.z.gem
+```
 
 ## Usage
 
