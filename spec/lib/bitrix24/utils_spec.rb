@@ -114,7 +114,7 @@ RSpec.describe Bitrix24::Utils do
     end
 
     context "when url is invalid" do
-      it { expect { util.validate_url("") }.to raise_error(Bitrix24::InvalidURIError, "URL is invalid") }
+      it { expect { util.validate_url("") }.to raise_error(Bitrix24::Errors::InvalidURIError, "URL is invalid") }
     end
   end
 
@@ -124,7 +124,7 @@ RSpec.describe Bitrix24::Utils do
     end
 
     context "when lead is invalid" do
-      it { expect { util.validate_lead(nil) }.to raise_error(Bitrix24::Error, "Lead fields is required") }
+      it { expect { util.validate_lead(nil) }.to raise_error(Bitrix24::Errors::GeneralError, "Lead fields is required") }
     end
   end
 
@@ -134,7 +134,7 @@ RSpec.describe Bitrix24::Utils do
     end
 
     context "when lead id is invalid" do
-      it { expect { util.validate_lead_id(nil) }.to raise_error(Bitrix24::Error, "Lead id must be an integer") }
+      it { expect { util.validate_lead_id(nil) }.to raise_error(Bitrix24::Errors::GeneralError, "Lead id must be an integer") }
     end
   end
 
@@ -146,8 +146,8 @@ RSpec.describe Bitrix24::Utils do
     end
 
     context "when uri is invalid" do
-      it { expect { util.build_uri(nil, "q", "v") }.to raise_error(Bitrix24::Error, "URL base is required") }
-      it { expect { util.build_uri("https://t.com.br", nil, "v") }.to raise_error(Bitrix24::Error, "Endpoint is required") }
+      it { expect { util.build_uri(nil, "q", "v") }.to raise_error(Bitrix24::Errors::GeneralError, "URL base is required") }
+      it { expect { util.build_uri("https://t.com.br", nil, "v") }.to raise_error(Bitrix24::Errors::GeneralError, "Endpoint is required") }
     end
   end
 end

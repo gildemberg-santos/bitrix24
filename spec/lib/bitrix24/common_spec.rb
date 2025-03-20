@@ -33,7 +33,7 @@ RSpec.describe Bitrix24::Common do
           fields_merge = bitrix24.merge_fields_and_custom_fields(lead_fields, custom_fields)
           bitrix24.url = url
 
-          expect { bitrix24.add(fields_merge) }.to raise_error(Bitrix24::Error)
+          expect { bitrix24.add(fields_merge) }.to raise_error(Bitrix24::Errors::GeneralError)
         end
       end
     end

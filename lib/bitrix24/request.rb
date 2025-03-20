@@ -5,7 +5,7 @@ module Bitrix24
     attributes :url, :fields
 
     def call!
-      raise Bitrix24::InvalidURIError, "URL is required" unless Utils.url?(url)
+      raise Bitrix24::Errors::InvalidURIError, "URL is required" unless Utils.url?(url)
 
       @url = url
       @fields = fields
@@ -13,9 +13,9 @@ module Bitrix24
       request
 
       Success result: { json: json, status_code: status_code }
-    rescue Bitrix24::InvalidURIError => e
+    rescue Bitrix24::Errors::InvalidURIError => e
       Failure(:invalid_uri, result: { error: e.message })
-    rescue Bitrix24::Error => e
+    rescue Bitrix24::Errors::GeneralError => e
       Failure(:error, result: { error: e.message })
     end
 
@@ -38,10 +38,10 @@ module Bitrix24
 
     def raise_error
       if status_code != 200 && json[:error] == "PORTAL_DELETED"
-        raise Bitrix24::InvalidURIError, json[:error_description]
+        raise Bitrix24::Errors::InvalidURIError, json[:error_description]
       end
 
-      raise Bitrix24::Error, json[:error_description] if status_code != 200
+      raise Bitrix24::Errors::GeneralError, json[:error_description] if status_code != 200
     end
   end
 end

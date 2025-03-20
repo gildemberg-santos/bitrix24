@@ -50,20 +50,20 @@ module Bitrix24
     def self.validate_url(url)
       return if url?(url)
 
-      raise Bitrix24::InvalidURIError, "URL is invalid"
+      raise Bitrix24::Errors::InvalidURIError, "URL is invalid"
     end
 
     def self.validate_lead(lead)
-      raise Bitrix24::Error, "Lead fields is required" if lead.blank?
+      raise Bitrix24::Errors::GeneralError, "Lead fields is required" if lead.blank?
     end
 
     def self.validate_lead_id(id)
-      raise Bitrix24::Error, "Lead id must be an integer" unless id.is_a?(Integer)
+      raise Bitrix24::Errors::GeneralError, "Lead id must be an integer" unless id.is_a?(Integer)
     end
 
     def self.build_uri(url_base, endpoint, query)
-      raise Bitrix24::Error, "URL base is required" if url_base.blank?
-      raise Bitrix24::Error, "Endpoint is required" if endpoint.blank?
+      raise Bitrix24::Errors::GeneralError, "URL base is required" if url_base.blank?
+      raise Bitrix24::Errors::GeneralError, "Endpoint is required" if endpoint.blank?
 
       url_base = url_base[0...-1] if url_base[-1] == "/"
       uri = URI("#{url_base}/#{endpoint}.json")
