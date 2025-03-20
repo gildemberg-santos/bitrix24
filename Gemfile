@@ -2,19 +2,22 @@
 
 source "https://rubygems.org"
 
+ruby ">= 2.6.10"
+
 gemspec
 
-gem "rake", ">= 13.0"
-
-gem "activesupport", ">= 5.2.1"
+gem "activesupport", ">= 6.1.7.10"
 gem "httparty", ">= 0.21.0"
+gem "rake", ">= 13.2.1"
 gem "u-case", ">= 4.5.2"
 
 group :development do
-  gem "rspec", ">= 3.0"
-  gem "rubocop", ">= 1.58"
-  gem "ruby-lsp", ">= 0.13.0"
-  gem "solargraph", ">= 0.50.0"
-  gem "vcr", ">= 6.3"
-  gem "webmock", ">= 3.19.1"
+  gem "rubocop", ">= 1.50.2"
+  gem "solargraph", ">= 0.52.0"
+end
+
+group :test do
+  gem "rspec", ">= 3.13.0"
+  gem "vcr", ">= 6.1.0"
+  gem "webmock", ">= 3.25.1"
 end
