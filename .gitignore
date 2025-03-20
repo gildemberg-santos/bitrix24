@@ -7,3 +7,5 @@
 /spec/reports/
 /tmp/
 .rspec_status
+.ruby-version
+.tool-versions
