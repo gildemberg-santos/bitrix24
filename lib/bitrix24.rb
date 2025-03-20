@@ -8,14 +8,8 @@ require "active_support/all"
 require "logger"
 require "openssl"
 require "httparty"
-require "micro/case"
+require "u-case"
 
 module Bitrix24; end
 
-require "bitrix24/utils"
-require "bitrix24/version"
-require "bitrix24/endpoint"
-require "bitrix24/debug"
-require "bitrix24/error"
-require "bitrix24/request"
-require "bitrix24/create_lead"
+Dir[File.join(__dir__, "bitrix24", "**", "*.rb")].sort.each { |file| require file }
