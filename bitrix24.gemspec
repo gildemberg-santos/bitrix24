@@ -4,7 +4,7 @@ require_relative "lib/bitrix24/version"
 
 Gem::Specification.new do |spec|
   spec.name = "bitrix24"
-  spec.version = Bitrix24::VERSION
+  spec.version = Bitrix24::Core::VERSION
   spec.platform = Gem::Platform::RUBY
   spec.authors = ["gildemberg-santos"]
   spec.email = ["gildemberg.santos@gmail.com"]

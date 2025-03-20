@@ -3,7 +3,7 @@ require "fileutils"
 
 desc "Incrementa a versão e executa o build"
 task :version_increment_and_build do
-  version_file = "lib/bitrix24/version.rb"
+  version_file = "lib/bitrix24/core/version.rb"
   content = File.read(version_file)
 
   new_content = content.gsub(/VERSION = "(\d+)\.(\d+)\.(\d+)"/) do |_match|
