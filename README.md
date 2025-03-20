@@ -13,11 +13,13 @@ gem "bitrix24", git: "https://github.com/gildemberg-santos/bitrix24"
 ```
 
 And then execute:
+
 ```sh
 bundle install
 ```
 
 Or install it yourself as:
+
 ```sh
 gem install pkg/bitrix24-x.y.z.gem
 ```
@@ -81,7 +83,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/gildemberg-santos/bitrix24. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/gildemberg-santos/bitrix24/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at <https://github.com/gildemberg-santos/bitrix24>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/gildemberg-santos/bitrix24/blob/master/CODE_OF_CONDUCT.md).
 
 ## Code of Conduct
 
