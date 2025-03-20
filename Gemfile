@@ -8,13 +8,7 @@ gem "rake", ">= 13.0"
 
 gem "activesupport", ">= 5.2.1"
 gem "httparty", ">= 0.21.0"
-gem "json", ">= 2.6.3"
-gem "logger"
-gem "net-http"
-gem "openssl"
 gem "u-case", ">= 4.5.2"
-gem "uri"
-gem "yaml"
 
 group :development do
   gem "rspec", ">= 3.0"
