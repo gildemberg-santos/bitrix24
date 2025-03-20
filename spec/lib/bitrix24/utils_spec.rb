@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Bitrix24::Utils do
+RSpec.describe Bitrix24::Util do
   subject { described_class }
 
   describe ".url?" do

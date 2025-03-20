@@ -6,7 +6,7 @@ module Bitrix24
       attributes :url, :fields
 
       def call!
-        raise Bitrix24::Errors::InvalidURIError, "URL is required" unless Utils.url?(url)
+        raise Bitrix24::Errors::InvalidURIError, "URL is required" unless Util.url?(url)
 
         @url = url
         @fields = fields

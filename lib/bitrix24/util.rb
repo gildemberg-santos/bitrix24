@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Bitrix24
-  class Utils
+  class Util
     def self.url?(url)
       return false if !url.is_a?(String) || url.blank? || !url.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
 

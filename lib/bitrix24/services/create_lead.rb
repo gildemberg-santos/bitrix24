@@ -7,10 +7,10 @@ module Bitrix24
 
       def call!
         @url = url
-        @params = Utils.merge_fields_and_custom_fields(lead_fields, custom_fields)
+        @params = Util.merge_fields_and_custom_fields(lead_fields, custom_fields)
 
-        Utils.validate_lead(params)
-        Utils.validate_url(url)
+        Util.validate_lead(params)
+        Util.validate_url(url)
 
         request_execute(Bitrix24::Endpoints::Lead::ENDPOINT_ADD, params)
       end
@@ -21,10 +21,10 @@ module Bitrix24
 
       def request_execute(endpoint, params, id = nil)
         params = JSON.parse(params.to_json)
-        fields_post = Utils.parse_to_payload(params) if params.is_a?(Hash)
+        fields_post = Util.parse_to_payload(params) if params.is_a?(Hash)
 
         Request.call(
-          url: Utils.build_uri(@url, endpoint, Utils.query_id(id)),
+          url: Util.build_uri(@url, endpoint, Util.query_id(id)),
           fields: fields_post
         )
       end
