@@ -3,8 +3,6 @@
 require "spec_helper"
 
 RSpec.describe Bitrix24::Common do
-  # subject { described_class.call(url: url, lead_fields: lead_fields, custom_fields: custom_fields) }
-
   let(:url) { "https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/" }
   let(:lead_fields) { { "TITLE" => "Test" } }
   let(:custom_fields) { [{ "name" => "TEST_DD", "value" => "VALOR_ADD" }] }
