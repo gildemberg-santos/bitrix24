@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Bitrix24::CreateLead do
+RSpec.describe Bitrix24::Services::CreateLead do
   subject { described_class.call(url: url, lead_fields: lead_fields, custom_fields: custom_fields) }
 
   let(:url) { "https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/" }

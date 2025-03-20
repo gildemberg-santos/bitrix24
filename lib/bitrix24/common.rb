@@ -17,7 +17,7 @@ module Bitrix24
     end
 
     def add(_)
-      response = Bitrix24::CreateLead.call(url: url, lead_fields: lead_fields, custom_fields: custom_fields)
+      response = Bitrix24::Services::CreateLead.call(url: url, lead_fields: lead_fields, custom_fields: custom_fields)
       raise Bitrix24::Errors::GeneralError, response.data[:error] if response.failure?
 
       response

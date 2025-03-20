@@ -31,7 +31,7 @@ To create a lead, you can use the following code:
 ```ruby
 require "bitrix24"
 
-Bitrix24::CreateLead.call(
+Bitrix24::Services::CreateLead.call(
     url: "https://your-domain.bitrix24.com.br/rest/1/your-api-key",
     lead_fields: {
         TITLE: "Lead title",
