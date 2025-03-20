@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activesupport", ">= 5.2.8.1"
   spec.add_dependency "httparty", ">= 0.21.0"
-  spec.add_dependency "rake", ">= 13.2.1"
+  spec.add_dependency "rake", ">= 12.0.0"
   spec.add_dependency "u-case", ">= 4.5.2"
 
   spec.metadata["rubygems_mfa_required"] = "true"
