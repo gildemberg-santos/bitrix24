@@ -6,7 +6,7 @@ ruby ">= 2.6.10"
 
 gemspec
 
-gem "activesupport", ">= 6.1.7.10"
+gem "activesupport", ">= 5.2.8.1"
 gem "httparty", ">= 0.21.0"
 gem "rake", ">= 13.2.1"
 gem "u-case", ">= 4.5.2"
