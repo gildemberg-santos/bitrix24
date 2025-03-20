@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Bitrix24::Request do
+RSpec.describe Bitrix24::Services::Request do
   subject { described_class.call(url: url, fields: fields) }
 
   let(:url) { "https://b24-iq2a30.bitrix24.com.br/rest/1/onkpa24vwd18zi90/crm.lead.add.json" }
