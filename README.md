@@ -116,6 +116,7 @@ bundle exec rake release
 ```
 
 Esse processo:
+
 - Cria uma tag no Git com a nova versão
 - Envia os commits e a tag para o GitHub
 - Publica o pacote no [RubyGems.org](https://rubygems.org)
