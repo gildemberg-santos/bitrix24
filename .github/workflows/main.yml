@@ -14,5 +14,5 @@ jobs:
     - name: Run the default task
       run: |
         gem install bundler -v 2.2.3
-        bundle install
+        bundle install --without development
         bundle exec rspec
