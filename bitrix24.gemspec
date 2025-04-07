@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/bitrix24/version"
+require_relative "lib/bitrix24/core/version"
 
 Gem::Specification.new do |spec|
   spec.name = "bitrix24"
