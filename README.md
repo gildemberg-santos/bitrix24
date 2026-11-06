@@ -2,37 +2,39 @@
 
 [![Build Status](https://github.com/gildemberg-santos/bitrix24/actions/workflows/main.yml/badge.svg)](https://github.com/gildemberg-santos/bitrix24/actions)
 
-Uma gem Ruby para integração com a API do Bitrix24. Permite criar e manipular leads, contatos e outras entidades dentro do seu ambiente Bitrix24 de forma prática e extensível.
+[Português](README.pt-BR.md)
+
+A Ruby gem for the Bitrix24 API. It lets you create and manage leads, contacts and other entities in your Bitrix24 account in a practical, extensible way.
 
 ---
 
-## 📦 Instalação
+## 📦 Installation
 
-### Adicionando ao Gemfile
+### Add it to your Gemfile
 
 ```ruby
 gem "bitrix24", git: "https://github.com/gildemberg-santos/bitrix24"
 ```
 
-Depois execute:
+Then run:
 
 ```bash
 bundle install
 ```
 
-### Instalação manual
+### Manual installation
 
 ```bash
 gem install pkg/bitrix24-x.y.z.gem
 ```
 
-> 💡 Substitua `x.y.z` pela versão apropriada do pacote `.gem`.
+> 💡 Replace `x.y.z` with the version of the `.gem` package.
 
 ---
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Criar um lead
+### Create a lead
 
 ```ruby
 require "bitrix24"
@@ -40,15 +42,15 @@ require "bitrix24"
 Bitrix24::Services::CreateLead.call(
   url: "https://your-domain.bitrix24.com.br/rest/1/your-api-key",
   lead_fields: {
-    TITLE: "Título do lead",
-    NAME: "Nome",
-    LAST_NAME: "Sobrenome",
-    PHONE: "Telefone",
-    EMAIL: "E-mail",
-    SOURCE_ID: "Origem do lead",
-    STATUS_ID: "Status do lead",
-    ASSIGNED_BY_ID: "ID do responsável",
-    UF_CRM_1619027320: "Campo personalizado"
+    TITLE: "Lead title",
+    NAME: "First name",
+    LAST_NAME: "Last name",
+    PHONE: "Phone",
+    EMAIL: "Email",
+    SOURCE_ID: "Lead source",
+    STATUS_ID: "Lead status",
+    ASSIGNED_BY_ID: "Owner ID",
+    UF_CRM_1619027320: "Custom field"
   },
   contact_fields: [{ name: "TEST_DD", value: "VALOR_ADD" }]
 )
@@ -56,7 +58,7 @@ Bitrix24::Services::CreateLead.call(
 
 ---
 
-## ⚠️ Forma Antiga (Depreciada)
+## ⚠️ Legacy interface (deprecated)
 
 ```ruby
 require "bitrix24"
@@ -65,15 +67,15 @@ bitrix24 = Bitrix24::Common.new
 
 fields_merge = bitrix24.merge_fields_and_custom_fields(
   {
-    TITLE: "Título do lead",
-    NAME: "Nome",
-    LAST_NAME: "Sobrenome",
-    PHONE: "Telefone",
-    EMAIL: "E-mail",
-    SOURCE_ID: "Origem do lead",
-    STATUS_ID: "Status do lead",
-    ASSIGNED_BY_ID: "ID do responsável",
-    UF_CRM_1619027320: "Campo personalizado"
+    TITLE: "Lead title",
+    NAME: "First name",
+    LAST_NAME: "Last name",
+    PHONE: "Phone",
+    EMAIL: "Email",
+    SOURCE_ID: "Lead source",
+    STATUS_ID: "Lead status",
+    ASSIGNED_BY_ID: "Owner ID",
+    UF_CRM_1619027320: "Custom field"
   },
   [{ name: "TEST_DD", value: "VALOR_ADD" }]
 )
@@ -82,55 +84,55 @@ bitrix24.url = "https://your-domain.bitrix24.com.br/rest/1/your-api-key"
 bitrix24.add(fields_merge)
 ```
 
-> ⚠️ Essa abordagem foi substituída pela interface mais moderna via `Bitrix24::Services::CreateLead`.
+> ⚠️ This approach was replaced by the more modern `Bitrix24::Services::CreateLead` interface.
 
 ---
 
-## 🛠 Desenvolvimento
+## 🛠 Development
 
-Após clonar o repositório, configure o ambiente de desenvolvimento com:
+After cloning the repository, set up the development environment with:
 
 ```bash
 bin/setup
 ```
 
-Para abrir um console interativo com a gem carregada:
+To open an interactive console with the gem loaded:
 
 ```bash
 bin/console
 ```
 
-### Instalar a gem localmente
+### Install the gem locally
 
 ```bash
 bundle exec rake install
 ```
 
-### Publicar nova versão
+### Release a new version
 
-1. Atualize a versão em `lib/bitrix24/version.rb`
-2. Execute:
+1. Update the version in `lib/bitrix24/version.rb`
+2. Run:
 
 ```bash
 bundle exec rake release
 ```
 
-Esse processo:
+This process:
 
-- Cria uma tag no Git com a nova versão
-- Envia os commits e a tag para o GitHub
-- Publica o pacote no [RubyGems.org](https://rubygems.org)
-
----
-
-## 🤝 Contribuindo
-
-Contribuições são sempre bem-vindas! Para reportar bugs ou sugerir melhorias, utilize o [repositório oficial no GitHub](https://github.com/gildemberg-santos/bitrix24).
-
-Todos os participantes devem seguir o nosso [Código de Conduta](https://github.com/gildemberg-santos/bitrix24/blob/master/CODE_OF_CONDUCT.md).
+- Creates a Git tag for the new version
+- Pushes the commits and the tag to GitHub
+- Publishes the package to [RubyGems.org](https://rubygems.org)
 
 ---
 
-## 📄 Licença
+## 🤝 Contributing
 
-Este projeto está disponível sob os termos da [Licença MIT](https://opensource.org/licenses/MIT).
+Contributions are welcome! To report bugs or suggest improvements, use the [GitHub repository](https://github.com/gildemberg-santos/bitrix24).
+
+All participants are expected to follow the [Code of Conduct](https://github.com/gildemberg-santos/bitrix24/blob/master/CODE_OF_CONDUCT.md).
+
+---
+
+## 📄 License
+
+Available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
